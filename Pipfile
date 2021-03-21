@@ -12,3 +12,7 @@ pillow = "*"
 
 [requires]
 python_version = "3.8"
+
+[scripts]
+createsuperuser = "python backend/manage.py createsuperuser"
+dev = "python backend/manage.py run"
