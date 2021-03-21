@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <ul>
+    {% for beer in object_list %}
+        <li>
+            <h3>{{ beer.name }}</h3>
+            <img src="{{ beer.image.url }}" alt="beer logo" width="200" height="100%">
+            <p>Mark: {{ beer.mark }}</p>
+            <p>Price: {{ beer.price }}</p>
+            <p>{{ beer.description }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock content %}
