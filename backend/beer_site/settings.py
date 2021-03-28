@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'social_django',
+    'rest_framework',
+    'drf_yasg',
 
     'beer_app',
 ]
@@ -140,6 +142,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+# STATIC_ROOT = BASE_DIR / 'static'
+
 
 # Media files
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -155,3 +163,9 @@ LOGOUT_URL = 'logout'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 20
+}

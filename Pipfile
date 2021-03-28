@@ -8,6 +8,9 @@ django = "*"
 django-environ = "*"
 pillow = "*"
 social-auth-app-django = "*"
+gunicorn = "*"
+djangorestframework = "*"
+drf-yasg = "*"
 
 [dev-packages]
 
