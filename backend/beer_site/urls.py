@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.http.response import JsonResponse
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
@@ -41,6 +42,7 @@ docs_urlpatterns = [
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('beer_app.urls')),
+    path('ping/', lambda request: JsonResponse(data='pong', safe=False))
 ] 
 
 if settings.DEBUG:

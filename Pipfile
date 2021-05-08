@@ -13,7 +13,8 @@ drf-yasg = "*"
 django-allauth = "*"
 dj-rest-auth = "*"
 psycopg2-binary = "*"
-
+install = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
