@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div id="beer_list">
+        <ol>
+            <li v-for="beer in items">
+                <div>
+                    <h3>${ beer.name }</h3>
+                    <img :src="beer.image" alt="beer logo" width="200" height="400">
+                    <p>Mark: ${ beer.mark } </p>
+                    <p>Price: ${ beer.price } </p>
+                    <p> ${ beer.description } </p>
+                </div>
+            </li>
+        </ol>
+        <button v-on:click="loadMore">Load More</button>
+    </div>
+
+    <script src="{% static 'js/beer_list.js' %}"></script>
+{% endblock content %}

@@ -36,7 +36,7 @@ SECRET_KEY = env('SECRET_KEY')
 # False if not in os.environ
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = [] #env.list()
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS',default=[])
 
 
 # Application definition
@@ -48,10 +48,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django.contrib.sites',
 
-    'social_django',
     'rest_framework',
     'drf_yasg',
+    # 'dj_rest_auth',
+    # 'dj_rest_auth.registration',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
 
     'beer_app',
 ]
@@ -64,8 +70,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'beer_site.urls'
@@ -88,14 +92,28 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'beer_site.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+POSTGRES_DB = env('POSTGRES_DB')
+POSTGRES_USER = env('POSTGRES_USER')
+POSTGRES_PASSWORD = env('POSTGRES_PASSWORD')
+POSTGRES_HOST = env('POSTGRES_HOST')
+POSTGRES_PORT = env('POSTGRES_PORT', default=5432)
+
 DATABASES = {
-    'default': env.db('DATABASE', default='sqlite:///./my_db.db'),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': POSTGRES_DB,
+        'USER': POSTGRES_USER,
+        'PASSWORD': POSTGRES_PASSWORD,
+        'HOST': POSTGRES_HOST,
+        'PORT': POSTGRES_PORT
+    },
 }
 
 
@@ -118,8 +136,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
+    # 'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 
@@ -146,23 +164,13 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-# STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Media files
 MEDIA_ROOT = BASE_DIR / 'media'
 
 MEDIA_URL = '/media/'
-
-# OAuth config
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env.str('GOOGLE_AUTH_ID')
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env.str('GOOGLE_AUTH_SECRET')
-
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
-
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
 
 
 REST_FRAMEWORK = {

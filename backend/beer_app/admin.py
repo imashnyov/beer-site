@@ -1,11 +1,5 @@
 from django.contrib import admin
-from .models import Beer, UserComment, UserMark
-
-
-class UserMarkInline(admin.StackedInline):
-    model = UserMark
-    # fields = ('owner__email', 'mark')
-    extra = 0
+from .models import Beer, UserComment
 
 
 class UserCommentInline(admin.StackedInline):
@@ -19,13 +13,14 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = (
         'mark',
         'price',
-        'created',
+        'updated_at',
     )
     list_display = (
         'name',
         'mark',
-        'created'
+        'price',
+        'updated_at'
     )
     search_fields = ('name',)
-    date_hierarchy = 'created'
-    inlines = [UserMarkInline, UserCommentInline]
+    date_hierarchy = 'updated_at'
+    inlines = [UserCommentInline]

@@ -8,7 +8,7 @@ class BeerListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Beer
-        fields = '__all__'
+        fields = ['id', 'name', 'price', 'mark', 'updated_at', 'image']
 
     # def get_averrage_mark(self):
     #     pass
