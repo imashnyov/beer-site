@@ -2,5 +2,12 @@ language: python
 install:
   - pip install pipenv
   - pipenv install
-# command to run tests
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
 script: pipenv run test
+env:
+  global:
+    - POSTGRES_DB=travis_ci_test
+    - POSTGRES_USER=postgres
