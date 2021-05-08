@@ -30,7 +30,7 @@ environ.Env.read_env(env_file=os.path.join(BASE_DIR, '..', '.env'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY', default='secret')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # False if not in os.environ
