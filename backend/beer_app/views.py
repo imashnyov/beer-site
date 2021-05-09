@@ -1,20 +1,18 @@
+from django.views import generic
 from django.views.generic import ListView
-from rest_framework.viewsets import ReadOnlyModelViewSet
+from django.db.models import Avg
+from rest_framework import permissions
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet, ViewSet
 
 from .models import Beer
-from .serializers import BeerListSerializer
-
-# Create your views here.
-class BeerListView(ListView):
-    model = Beer
-    template_name = 'beer_list.html'
+from .serializers import BeerListSerializer, BeerSerializer
 
 
-class BeerViewset(ReadOnlyModelViewSet):
-    queryset = Beer.objects.all()
+class BeerViewset(ModelViewSet):
+    queryset = Beer.objects.all().annotate(raiting=Avg('user_comments__mark'))
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_serializer_class(self):
-        return BeerListSerializer
-
-
-
+        if self.action == 'list':
+            return BeerListSerializer
+        return BeerSerializer

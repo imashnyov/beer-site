@@ -13,7 +13,6 @@ drf-yasg = "*"
 django-allauth = "*"
 dj-rest-auth = "*"
 psycopg2-binary = "*"
-install = "*"
 django-cors-headers = "*"
 
 [dev-packages]
@@ -24,4 +23,4 @@ python_version = "3.8"
 [scripts]
 createsuperuser = "python backend/manage.py createsuperuser"
 dev = "./run.sh"
-test = "python backend/manage.py test"
+test = "python backend/manage.py test -v2"
