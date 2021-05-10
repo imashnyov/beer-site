@@ -11,7 +11,7 @@ RUN pip install --upgrade pip
 RUN pip install pipenv
 RUN pipenv install --system --ignore-pipfile
 
-COPY ./backend /backend
+COPY . .
 RUN chmod +x run.sh
 
 CMD ["bash", "run.sh"]
