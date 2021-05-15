@@ -150,3 +150,5 @@ bot-config.json
 media
 
 staticfiles
+
+node_modules
