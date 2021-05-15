@@ -34,15 +34,15 @@ schema_view = get_schema_view(
 )
 
 docs_urlpatterns = [
-   re_path(r'^docs(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-   re_path(r'^docs/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-   re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+   re_path(r'^api/docs(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+   re_path(r'^api/docs/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+   re_path(r'^api/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('beer_app.urls')),
-    path('ping/', lambda request: JsonResponse(data='pong', safe=False))
+    path('api/', include('beer_app.urls')),
+    path('api/ping/', lambda request: JsonResponse(data='pong', safe=False))
 ] 
 
 if settings.DEBUG:

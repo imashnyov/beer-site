@@ -10,5 +10,5 @@ beer_router.register(r'beers', views.BeerViewset)
 
 app_name = 'beer-app'
 urlpatterns = [
-    path('api/', include(beer_router.urls))
+    path('', include(beer_router.urls))
 ]

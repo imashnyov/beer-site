@@ -10,7 +10,7 @@
             </div>
         </ul>
     </li>
-    <button type="button" class="btn btn-primary">Load more</button>
+    <button v-on:click="getBeers" type="button" class="btn btn-primary">Load more</button>
   </div>
 </template>
 
@@ -25,6 +25,7 @@ export default {
   },
   methods: {
     getBeers() {
+      console.log('Get beers');
       const path = `${process.env.VUE_APP_API_URL}/beers`;
       axios.get(path)
         .then((res) => {
