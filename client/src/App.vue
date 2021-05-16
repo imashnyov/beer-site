@@ -31,4 +31,13 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.small_image {
+  height: 260px;
+}
+
+.hov_container:hover {
+  background-color: #42b983;
+}
+
 </style>
