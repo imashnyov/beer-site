@@ -30,7 +30,7 @@ environ.Env.read_env(env_file=os.path.join(BASE_DIR, '..', '.env'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
-SECRET_KEY = env('SECRET_KEY', default='secret')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # False if not in os.environ
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'drf_yasg',
+    'django_filters',
     'corsheaders',
     # 'dj_rest_auth',
     # 'dj_rest_auth.registration',
@@ -186,5 +187,8 @@ CORS_ALLOWED_ORIGINS = [
 # DRF
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 2
+    'PAGE_SIZE': 2,
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
 }

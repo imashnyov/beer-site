@@ -25,9 +25,9 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="BeerRaiting API",
+      title="BeerRating API",
       default_version='v1',
-      description="Beer raiting api",
+      description="Beer rating api",
    ),
    public=True,
    permission_classes=[permissions.AllowAny],

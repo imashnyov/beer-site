@@ -4,7 +4,7 @@ from .models import Beer, UserComment
 
 
 class BeerSerializer(serializers.ModelSerializer):
-    raiting = serializers.FloatField()
+    rating = serializers.FloatField()
 
     class Meta:
         model = Beer
@@ -15,7 +15,7 @@ class BeerListSerializer(BeerSerializer):
 
     class Meta:
         model = Beer
-        fields = ['id', 'name', 'price', 'mark', 'updated_at', 'image', 'raiting']
+        fields = ['id', 'name', 'price', 'mark', 'updated_at', 'image', 'rating']
 
     # def get_averrage_mark(self):
     #     pass
