@@ -9,4 +9,6 @@ script: make test
 env:
   global:
     - POSTGRES_DB=travis_ci_test
+    - POSTGRES_HOST=localhost
     - POSTGRES_USER=postgres
+    - SECRET_KEY=secret
