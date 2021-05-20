@@ -1,14 +1,29 @@
 language: python
-install:
-  - cd ./backend/ && make
-services:
-  - postgresql
-before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-script: make test
-env:
-  global:
-    - POSTGRES_DB=travis_ci_test
-    - POSTGRES_HOST=localhost
-    - POSTGRES_USER=postgres
-    - SECRET_KEY=secret
+
+stages:
+  - test
+  - build
+  - deploy
+
+jobs:
+  include:
+    - stage: test
+      install:
+        - cd ./backend/ && make
+      services:
+        - postgresql
+      before_script:
+        - psql -c 'create database travis_ci_test;' -U postgres
+      script: make test
+      env:
+        - POSTGRES_DB=travis_ci_test
+        - POSTGRES_HOST=localhost
+        - POSTGRES_USER=postgres
+        - SECRET_KEY=secret
+
+    - stage: build
+      script: echo Building
+
+    - stage: deploy
+      script: echo Deploy
+      if: branch = master
