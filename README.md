@@ -8,3 +8,6 @@
 - Run create **.env** file 
 - Create superuser `pipenv run createsuperuser`
 - Run *dev* server `pipenv run dev`
+
+
+TEST
